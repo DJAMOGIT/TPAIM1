@@ -1,18 +1,18 @@
 :- dynamic task/4.
 
 create_task(Id, Description, Responsable) :-
-    \+ task(Id, _, _, _),  % Vérifie que l'ID est unique
+    \+ task(Id, _, _, _),  
     assertz(task(Id, Description, Responsable, false)).
 
 
 assign_task(Id, Responsable) :-
-    retract(task(Id, Description, _, Statut)),  % Retire l'ancienne tâche
+    retract(task(Id, Description, _, Statut)), 
     assertz(task(Id, Description, Responsable, Statut)). 
 
 
 mark_task_completed(Id) :-
-    retract(task(Id, Description, Responsable, _)),  % Retire l'ancienne tâche
-    assertz(task(Id, Description, Responsable, true)).  % Ajoute la tâche avec statut mis à jour
+    retract(task(Id, Description, Responsable, _)),  
+    assertz(task(Id, Description, Responsable, true)).  
 
 
 display_tasks :-
