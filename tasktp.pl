@@ -1,18 +1,16 @@
-:- dynamic task/4.
-
-create_task(Id, Description, Responsable) :-
-    \+ task(Id, _, _, _),  
+create_task(Id, Description, Responsable):-
+    \+ task(Id, _, _, _),
     assertz(task(Id, Description, Responsable, false)).
 
 
 assign_task(Id, Responsable) :-
-    retract(task(Id, Description, _, Statut)), 
-    assertz(task(Id, Description, Responsable, Statut)). 
+    retract(task(Id, Description, _, Statut)),
+    assertz(task(Id, Description, Responsable, Statut)).
 
 
 mark_task_completed(Id) :-
-    retract(task(Id, Description, Responsable, _)),  
-    assertz(task(Id, Description, Responsable, true)).  
+    retract(task(Id, Description, Responsable, _)),
+    assertz(task(Id, Description, Responsable, true)).
 
 
 display_tasks :-
@@ -36,4 +34,5 @@ display_completed_tasks :-
             write('Description: '), write(Description), nl,
             write('Responsable: '), write(Responsable), nl,
             write('Statut: Terminée'), nl, nl)).
+
 
